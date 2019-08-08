@@ -26,15 +26,25 @@ func main() {
 	}
 
 	//jimPointer := &jim
+	jim.print()
+	jim.pointlessupdateName("JACK")
+	jim.print()
 	jim.updateName("John")
 	jim.print()
 }
 
 //a function that accepts a struct on its receiver
 func (p person) print() {
-	fmt.Printf("%v", p)
+	fmt.Println(p)
 }
 
+//Check this one, no modifications happen
+func (p person) pointlessupdateName(newFirstName string) {
+	(p).firstName = newFirstName
+	p.print()
+}
+
+//To modify the value, have a pointer is needed
 func (p *person) updateName(newFirstName string) {
 	(*p).firstName = newFirstName
 }
